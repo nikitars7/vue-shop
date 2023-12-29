@@ -101,7 +101,8 @@ watch(cartItems, () => {
   }))
 })
 onMounted(async () => {
-  cartItems.value = JSON.parse(localStorage.getItem('cart') || [])
+  const localCart = localStorage.getItem('cart')
+  cartItems.value = localCart ? JSON.parse(localCart) : []
   const params = getParams()
   await fetchSneakers(params)
   await fetchFavorites()
